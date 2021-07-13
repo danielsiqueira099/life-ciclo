@@ -1,17 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+class App extends React.Component{
+  state = {
+    clicou: "ainda não clicou"
+  }
+  componentDidMount(){
+    console.log('[App] - Apareceu na tela')
+  }
+  handleClick(){
+    this.setState({
+      clicou: "clicou"
+    })
+  }
+  render(){
+    console.log("[App] - Renderizou")
+    return (
+      <div>
+        Olá, {this.props.name}, você {this.state.clicou}
+        <button onClick={this.handleClick.bind(this)}>Clique Aqui</button>
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App name={"Daniel Siqueira"}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
